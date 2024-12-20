@@ -56,6 +56,9 @@
                 height: 90vh;
                 margin-top: 20px;
             }
+            .row{
+                height: calc(100%5);
+            }
         }
 
         @media (max-width: 480px) {
@@ -65,8 +68,8 @@
                 margin-top: 100px;
             }
 
-            .row {
-                height: 50px;
+            .row{
+                height: calc(100%5);
             }
 
             #ans {
@@ -85,7 +88,7 @@
             <p id="ans">0</p>
         </div>
 
-        <div class="mains w-100 h-75 border border-secondary my-2 rounded-3 p-3">
+        <div class="keyboard w-100 h-75 border border-secondary my-2 rounded-3 p-3">
 
             <div class="row px-1">
                 <button value="clear" class="col-3 border  btn bg-primary">AC</button>
@@ -129,9 +132,9 @@
 
             const exp = document.querySelector("#exp");
             const ans = document.querySelector("#ans");
-            const mains = document.querySelector(".mains");
+            const keyboard = document.querySelector(".keyboard");
 
-            mains.addEventListener("click", e => {
+            keyboard.addEventListener("click", e => {
 
                 const val = e.target.value;
                 if (!val) return;
@@ -162,18 +165,20 @@
                     if (exp.textContent === "0" && !isNaN(val)) {
                         // Replace 0 with the first valid number
                         exp.textContent = val;
-                    } else if (
+                    } 
+                    else if (
                         ["+", "-", "*", "/", "%"].includes(val) &&
                         ["+", "-", "*", "/", "%"].includes(exp.textContent.slice(-1))
                     ) {
                         // Prevent consecutive operators
                         exp.textContent = exp.textContent.slice(0, -1) + val;
-                    } else if (val === "." && exp.textContent.endsWith("."))
-                    
-                     {
+                    } 
+                    else if (val === "." && exp.textContent.split(/[\+\-\/\*\%]/).pop().includes("."))
+                    {
                         // Prevent multiple dots in a single number
                         return;
-                    } else {
+                    } 
+                    else {
                         exp.textContent += val;
                     }
                     try {
