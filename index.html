@@ -186,7 +186,7 @@
                     ) {
                         // Prevent consecutive operators
                         exp.textContent = exp.textContent.slice(0, -1) + val;
-                    } else if (val === "." && exp.textContent.includes(".")) {
+                    } else if (val === "." && exp.textContent.endsWith(".")) {
                         // Prevent multiple dots in a single number
                         return;
                     } else {
